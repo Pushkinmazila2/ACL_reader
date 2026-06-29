@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     smbclient \
     cifs-utils \
     iputils-ping \
+    nano \
     locales \
     && locale-gen ru_RU.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
