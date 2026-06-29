@@ -10,6 +10,14 @@ RUN apt-get update && apt-get install -y \
     cifs-utils \
     iputils-ping \
     && rm -rf /var/lib/apt/lists/*
+    
+# Генерируем русскую локаль UTF-8
+RUN locale-gen ru_RU.UTF-8
+
+# Устанавливаем системные переменные окружения для поддержки UTF-8
+ENV LANG=ru_RU.UTF-8
+ENV LANGUAGE=ru_RU:ru
+ENV LC_ALL=ru_RU.UTF-8
 
 # Рабочая директория
 WORKDIR /app
