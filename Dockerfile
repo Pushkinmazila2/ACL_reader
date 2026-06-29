@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Обновляем систему и устанавливаем утилиты для SMB/CIFS
 RUN apt-get update && apt-get install -y \
     samba-client \
+    smbclient \
     cifs-utils \
     iputils-ping \
     && rm -rf /var/lib/apt/lists/*
