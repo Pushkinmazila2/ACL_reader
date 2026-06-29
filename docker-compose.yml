@@ -1,0 +1,14 @@
+services:
+  smb-checker:
+    build: .
+    container_name: smb-acl-tester
+    restart: unless-stopped
+    # Переменные окружения, чтобы было удобно менять данные авторизации
+    environment:
+      - SMB_USER=Администратор
+      - SMB_PASS=SuperPassword123
+      - SMB_SERVER=192.168.1.50
+      - SMB_SHARE=SharedFolder
+    # Сетевой режим host может пригодиться, если у вас сложная локальная сеть, 
+    # но по умолчанию оставляем стандартный bridge.
+    network_mode: bridge
