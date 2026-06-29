@@ -14,3 +14,13 @@ Enable-NetFirewallRule -DisplayGroup "Remote SAM Management" -ErrorAction Silent
 # Отключаем Remote UAC ограничения для локальных учеток
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "LocalAccountTokenFilterPolicy" -Value 1 -PropertyType DWORD -Force
 ```
+# 1. Задаем IP-адрес вашего Docker/Hyper-V контейнера
+$AllowedIP = "172.20.116.33"
+
+# 2. Ограничиваем русскоязычную версию правила брандмауэра
+Get-NetFirewallRule -DisplayGroup "Удаленное управление SAM" -ErrorAction SilentlyContinue | 
+    Set-NetFirewallRule -RemoteAddress $AllowedIP
+
+# 3. Ограничиваем англоязычную версию правила брандмауэра
+Get-NetFirewallRule -DisplayGroup "Remote SAM Management" -ErrorAction SilentlyContinue | 
+    Set-NetFirewallRule -RemoteAddress $AllowedIP
