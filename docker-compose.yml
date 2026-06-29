@@ -5,10 +5,13 @@ services:
     restart: unless-stopped
     # Переменные окружения, чтобы было удобно менять данные авторизации
     environment:
-      - SMB_USER=Администратор
-      - SMB_PASS=SuperPassword123
-      - SMB_SERVER=192.168.1.50
-      - SMB_SHARE=SharedFolder
+      - SMB_USER=${SMB_USER}
+      - SMB_PASS=${SMB_PASS}
+      - SMB_SERVER=${SMB_SERVER}
+      - SMB_SHARE=${SMB_SHARE}
+    # SMB_SERVER - ip or hostname
+    # SMB_SHARE - share name
+    # Имя пользователя Windows (если учетка локальная, пишите просто имя. Если доменная — DOMAIN\имя)
     # Сетевой режим host может пригодиться, если у вас сложная локальная сеть, 
     # но по умолчанию оставляем стандартный bridge.
     network_mode: bridge
